@@ -8,6 +8,10 @@ var Publisher = function (obj) {
 	var slice = Array.prototype.slice;
 
 	that.bind = function (event, fn ) {
+		if (!fn) {
+			throw "Bind function needs a function as the second argument to set the handler"
+			return;		
+		}
 		events[event] =  events[event] || [];
 		events[event].push(fn);
 	};
@@ -31,4 +35,9 @@ var Publisher = function (obj) {
 	};
 
 	return that;
+}
+
+
+if( typeof module !== "undefined" && ('exports' in module)){
+	module.exports	= Publisher;
 }
